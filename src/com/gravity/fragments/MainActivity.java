@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
+import android.util.Log;
+
 public class MainActivity extends FragmentActivity
 	implements MenuFragment.OnMenuSelectedListener
 {
@@ -12,8 +14,9 @@ public class MainActivity extends FragmentActivity
     @Override
     public void onCreate(Bundle savedInstanceState)
 	{
+    	Log.d("MYTAG", "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_view);
+        setContentView(R.layout.main);
 
 		if(findViewById(R.id.fragment_container) != null) {
 
@@ -24,13 +27,13 @@ public class MainActivity extends FragmentActivity
 			MenuFragment firstFragment = new MenuFragment();
 			firstFragment.setArguments(getIntent().getExtras());
 
-			getSupportFragmentManager().beginTransaction().add(
-				R.id.fragment_container, firstFragment).commit();
+			getSupportFragmentManager().beginTransaction()
+				.add(R.id.fragment_container, firstFragment).commit();
 
 		}
     }
 	
-	public void onContentSelectedListener(int position) {
+	public void onContentSelected(int position) {
 		ContentFragment contentFragment = (ContentFragment)
 			getSupportFragmentManager().findFragmentById(R.id.content_fragment);
 
