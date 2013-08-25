@@ -10,19 +10,19 @@ import android.widget.ListView;
 
 public class MenuFragment extends ListFragment
 {
-	OnMenuSelectedListener mCallback;
+    OnMenuSelectedListener mCallback;
 
-	public interface OnMenuSelectedListener{
-		public void onContentSelected(int position);
-	}
+    public interface OnMenuSelectedListener{
+        public void onContentSelected(int position);
+    }
 
-	@Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // We need to use a different list item layout for devices older than Honeycomb
         int layout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-			android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
+            android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
 
         // Create an array adapter for the list view, using the Ipsum headlines array
         setListAdapter(new ArrayAdapter<String>(getActivity(), layout, Ipsum.Headlines));
@@ -39,25 +39,25 @@ public class MenuFragment extends ListFragment
         }
     }
 
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		
-		try {
-			mCallback = (OnMenuSelectedListener) activity;
-		}
-		catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString()
-			+ " Must implement OnMenuSelectedListener");
-		}
-	}
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
 
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		mCallback.onContentSelected(position);
+        try {
+            mCallback = (OnMenuSelectedListener) activity;
+        }
+        catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+            + " Must implement OnMenuSelectedListener");
+        }
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        mCallback.onContentSelected(position);
 
         // Set the item as checked to be highlighted when in two-pane layout
         getListView().setItemChecked(position, true);
-	}
+    }
 
 }

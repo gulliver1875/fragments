@@ -16,7 +16,7 @@ public class ContentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
         Bundle savedInstanceState) {
-    	Log.d("MYTAG", "onCreateView");
+        Log.d("MYTAG", "onCreateView");
 
         // If activity recreated (such as from screen rotate), restore
         // the previous article selection set by onSaveInstanceState().
@@ -42,16 +42,17 @@ public class ContentFragment extends Fragment {
         	Log.d("MYTAG", "if");
             // Set article based on argument passed in
             updateContentView(args.getInt(ARG_POSITION));
-        } else if (mCurrentPosition != -1) {
-        	Log.d("MYTAG", "else");
+        }
+        else if (mCurrentPosition != -1) {
+            Log.d("MYTAG", "else");
             // Set article based on saved instance state defined during onCreateView
             updateContentView(mCurrentPosition);
         }
-    	Log.d("MYTAG", "onStart");
+        Log.d("MYTAG", "onStart");
     }
 
     public void updateContentView(int position) {
-    	Log.d("MYTAG", "" + position);
+        Log.d("MYTAG", "" + position);
         TextView content = (TextView) getActivity().findViewById(R.id.content);
         content.setText(Ipsum.Articles[position]);
         mCurrentPosition = position;
